@@ -253,3 +253,118 @@ recipeList:
       oldFullyQualifiedTypeName: javax.faces.el.ReferenceSyntaxException
       newFullyQualifiedTypeName: jakarta.el.ELException
       ignoreDefinition: true
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: org.openrewrite.java.migrate.jakarta.RemovedComSunMailPackages
+displayName: Use `jakarta.mail.util.StreamProvider` utility interface
+description: >
+  The Jakarta Mail specification API has now been split from the API of the reference implementation. For users of the 
+  `com.sun.mail` encoder and decoder classes, to help facilitate this change Jakarta Mail 2.1 introduces the 
+  `jakarta.mail.util.StreamProvider` utility interface
+recipeList:
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: com.sun.mail.util.BASE64DecoderStream <constructor>(..)
+      newMethodName: inputBase64
+      ignoreDefinition: true
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: com.sun.mail.util.BASE64DecoderStream <constructor>(..)
+      argumentIndex: 1
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: com.sun.mail.util.BASE64EncoderStream <constructor>(..)
+      newMethodName: outputBase64
+      ignoreDefinition: true
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: com.sun.mail.util.BASE64EncoderStream <constructor>(..)
+      argumentIndex: 1
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: com.sun.mail.util.BEncoderStream <constructor>(..)
+      newMethodName: outputB
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: com.sun.mail.util.LineInputStream <constructor>(..)
+      newMethodName: inputLineStream
+      ignoreDefinition: true
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: com.sun.mail.util.LineInputStream <constructor>(..)
+      argumentIndex: 1
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: com.sun.mail.util.LineOutputStream <constructor>(..)
+      newMethodName: outputLineStream
+      ignoreDefinition: true
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: com.sun.mail.util.LineOutputStream <constructor>(..)
+      argumentIndex: 1
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: com.sun.mail.util.QDecoderStream <constructor>(..)
+      newMethodName: inputQ
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: com.sun.mail.util.QEncoderStream <constructor>(..)
+      newMethodName: outputQ
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: com.sun.mail.util.QPDecoderStream <constructor>(..)
+      newMethodName: inputQP
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: com.sun.mail.util.QPEncoderStream <constructor>(..)
+      newMethodName: outputQP
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: com.sun.mail.util.UUDecoderStream <constructor>(..)
+      newMethodName: inputUU
+      ignoreDefinition: true
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: com.sun.mail.util.LineOutputStream <constructor>(..)
+      argumentIndex: 1
+  - org.openrewrite.java.ChangeMethodName:
+      methodPattern: com.sun.mail.util.UUEncoderStream <constructor>(..)
+      newMethodName: outputUU
+      ignoreDefinition: true
+  - org.openrewrite.java.DeleteMethodArgument:
+      methodPattern: com.sun.mail.util.LineOutputStream <constructor>(..)
+      argumentIndex: 1
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.sun.mail.util.BASE64DecoderStream
+      newFullyQualifiedTypeName: jakarta.mail.util.StreamProvider
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.sun.mail.util.BASE64EncoderStream
+      newFullyQualifiedTypeName: jakarta.mail.util.StreamProvider
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.sun.mail.util.BEncoderStream
+      newFullyQualifiedTypeName: jakarta.mail.util.StreamProvider
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.sun.mail.util.LineInputStream
+      newFullyQualifiedTypeName: jakarta.mail.util.StreamProvider
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.sun.mail.util.LineOutputStream
+      newFullyQualifiedTypeName: jakarta.mail.util.StreamProvider
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.sun.mail.util.QDecoderStream
+      newFullyQualifiedTypeName: jakarta.mail.util.StreamProvider
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.sun.mail.util.QEncoderStream
+      newFullyQualifiedTypeName: jakarta.mail.util.StreamProvider
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.sun.mail.util.QPDecoderStream
+      newFullyQualifiedTypeName: jakarta.mail.util.StreamProvider
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.sun.mail.util.QPEncoderStream
+      newFullyQualifiedTypeName: jakarta.mail.util.StreamProvider
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.sun.mail.util.UUDecoderStream
+      newFullyQualifiedTypeName: jakarta.mail.util.StreamProvider
+      ignoreDefinition: true
+  - org.openrewrite.java.ChangeType:
+      oldFullyQualifiedTypeName: com.sun.mail.util.UUEncoderStream
+      newFullyQualifiedTypeName: jakarta.mail.util.StreamProvider
+      ignoreDefinition: true
